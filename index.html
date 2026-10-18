@@ -1,769 +1,508 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <script src="./skin/vue.global.prod.3.4.27.js"></script>
-    <link rel="stylesheet" href="./skin/style.css">
-    <link rel="stylesheet" href="./skin/style_icon.css">
-    <link rel="stylesheet" href="./skin/index.css">
-    <script src="./skin/nutui.umd.4.3.8.js"></script>
-    <title>创博娱乐</title>
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <link rel="icon" href="./skin/0544aa35b27947c89122b31183d19d04.png" type="image/png">
-    <style>
-        .lang_radio {
+    <meta charset="utf-8" />
+    <title>奥比岛</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <!-- css -->
+    <link rel="stylesheet" href="./css/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="./css/mobile.css?v=20231117164802" />
+    <link type="image/png" href="./img/logo2.png" rel="icon" />
+    <link rel="shortcut icon" type="image/png" sizes="192x192" href="./img/logo2.png" />
+    <link rel="apple-touch-icon" sizes="128x128" href="./img/logo2.png" />
+    <style type="text/css">
+        #iosDown,
+        #androidDown {
             display: none;
         }
 
-        .lang_radio_img {
-            vertical-align: unset !important;
-            width: 13px !important;
-            height: 13px !important;
-            margin-top: 0px !important;
-            cursor: pointer;
-            margin-right: 3px !important;
-            margin-top: 4px !important;
-            display: inline;
-            min-height: unset !important;
-            min-width: unset !important;
+        .button {
+            text-decoration: none;
+            outline: none;
         }
-    </style>
-    <style>
-        .marquee-container {
+
+        a {
+            -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+            -webkit-user-select: none;
+            -moz-user-focus: none;
+            -moz-user-select: none;
+        }
+
+        .loading-mask {
             width: 100%;
-            /* 根据需要调整宽度 */
-            overflow: hidden;
-            /* 隐藏超出部分 */
-            white-space: nowrap;
-            /* 不换行 */
-            box-sizing: border-box;
-            position: relative;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .marquee {
-            display: inline-block;
-            padding-left: 10%;
-            /* 开始位置在右侧 */
-            animation: marquee 25s linear infinite;
-            /* 动画效果 */
+        .loading-box {
+            width: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
-        @keyframes marquee {
+        .loading-box img {
+            width: 80px;
+        }
+
+        .loading-box span {
+            font-size: 14px;
+        }
+
+        @keyframes ldio {
             0% {
-                transform: translateX(0);
-                /* 初始位置 */
+                transform: translate(6px, 40px) scale(0);
+            }
+            25% {
+                transform: translate(6px, 40px) scale(0);
+            }
+            50% {
+                transform: translate(6px, 40px) scale(1);
+            }
+            75% {
+                transform: translate(40px, 40px) scale(1);
             }
             100% {
-                transform: translateX(-100%);
-                /* 结束位置 */
+                transform: translate(74px, 40px) scale(1);
             }
         }
-    </style>
-    <style>
-        .responsive-img {
-            max-width: 100%;
-            /* 最大宽度为100% */
-            height: auto;
-            /* 高度自动调整 */
+
+        @keyframes ldio-r {
+            0% {
+                transform: translate(74px, 40px) scale(1);
+            }
+            100% {
+                transform: translate(74px, 40px) scale(0);
+            }
+        }
+
+        @keyframes ldio-c {
+            0% {
+                background: #e15b64
+            }
+            25% {
+                background: #abbd81
+            }
+            50% {
+                background: #f8b26a
+            }
+            75% {
+                background: #f47e60
+            }
+            100% {
+                background: #e15b64
+            }
+        }
+
+        .ldio div {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            transform: translate(40px, 40px) scale(1);
+            background: #e15b64;
+            animation: ldio 3.7037037037037033s infinite cubic-bezier(0, 0.5, 0.5, 1);
+        }
+
+        .ldio div:nth-child(1) {
+            background: #f47e60;
+            transform: translate(74px, 40px) scale(1);
+            animation: ldio-r 0.9259259259259258s infinite cubic-bezier(0, 0.5, 0.5, 1), ldio-c 3.7037037037037033s infinite step-start;
+        }
+
+        .ldio div:nth-child(2) {
+            animation-delay: -0.9259259259259258s;
+            background: #e15b64;
+        }
+
+        .ldio div:nth-child(3) {
+            animation-delay: -1.8518518518518516s;
+            background: #f47e60;
+        }
+
+        .ldio div:nth-child(4) {
+            animation-delay: -2.7777777777777777s;
+            background: #f8b26a;
+        }
+
+        .ldio div:nth-child(5) {
+            animation-delay: -3.7037037037037033s;
+            background: #abbd81;
+        }
+
+        .loadingio-spinner-ellipsis {
+            width: 80px;
+            height: 80px;
+            display: inline-block;
+            overflow: hidden;
+            background: none;
+        }
+
+        .ldio {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform: translateZ(0) scale(0.8);
+            backface-visibility: hidden;
+            transform-origin: 0 0;
+        }
+
+        .ldio div {
+            box-sizing: content-box;
         }
     </style>
+    <!-- js -->
+    <script type="text/javascript">
+        window["document"]["write"]('<div class="loading-mask"><div class="loading-box"><div class="loadingio-spinner-ellipsis"><div class="ldio"><div></div><div></div><div></div><div></div><div></div></div></div><span>正在加载中...</span></div></div>');
+    </script>
 </head>
 
 <body>
-    <div id="app" class="page" data-v-app="">
-        <div class="page-cont">
-
-            <img src="./images/img4.gif" class="responsive-img">
-            <img src="./skin/mb.png" class="responsive-img">
-
-            <div class="cont-box" style="margin-top: -18px;">
-
-                <div class="notice-bar">
-                    <img class="img" src="./skin/icon1.png">
-                    <div class="msg-bar">
-                        <div class="marquee-container">
-                            <div class="marquee">
-                                欢迎来到创博娱乐，本平台已上押至官方，请各位老板放心娱乐，在本平台如发生不下分，卡回款，请及时联系本网页在线客服，会及时处理！
-                            </div>
-                        </div>
-                    </div>
+    <div class="content">
+        <img class="logo" src="img/logo.png" />
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="img/1.webp" />
                 </div>
-                <div class="app-box">
-                    <a href="javascript:;">
-              <img src="./skin/dj1.png">
-            </a>
-                    <a href="javascript:;">
-              <img src="./skin/dj2.png">
-            </a>
-                    <a href="javascript:;">
-               <img src="./skin/dj3.png">
-              </a>
-                    <a href="javascript:;">
-               <img src="./skin/dj4.png">
-            </a>
+                <div class="swiper-slide">
+                    <img src="img/2.webp" />
                 </div>
-                <div class="pay-box">
-                    <img src="./skin/img1.png">
+                <div class="swiper-slide">
+                    <img src="img/3.webp" />
                 </div>
-                <div class="app-list">
-
-                    <div class="app-item">
-                        <div class="info-box">
-                            <div class="app-icon">
-                                <img src="./static/upload/image/20250327/1743067939459295.png" alt="">
-                            </div>
-                            <div class="app-info">
-                                <div class="top-info">
-                                    <div class="info">
-                                        <div class="name">
-                                            名爵 APP
-                                        </div>
-                                        <div class="link">
-                                        <div class="name">
-                                            房间: 223587
-                                        </div>
-                                            <a href="javascript:;">
-                          ㅤㅤㅤㅤㅤ
-
-                        </a>
-                                            <a href="javascript:;">
-                            
-
-                            
-                          </a>
-                                            <a href="javascript:;">
-                          
-                        </a>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="label-list">
-                                    <a href="javascript:;" class="label">
-                      澳洲5/10
-                    </a>
-                                    <a href="javascript:;" class="label">
-                      极速赛车
-                    </a>
-                                    <a href="javascript:;" class="label">
-                      极速飞艇
-                    </a>
-                                    <a href="javascript:;" class="label">
-                      极速时时彩
-                    </a>
-                                    <a href="javascript:;" class="label">
-                      重庆时时彩
-                    </a>
-                                    <a href="javascript:;" class="label">
-                      幸运飞艇
-                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="btn-box">
-                            <a class="btn" href="#" id="link18">
-                  <img src="./skin/icon6.png">
-                  <span>
-                    下载APP
-                  </span>
-                </a>
-                            <a class="btn" href="#" id="kefu18">
-                  <img src="./skin/icon7.png">
-                  <span>
-                    在线客服  
-                  </span>
-                </a>
-                        </div>
-                    </div>
-                    <div id="aaa18" style="display: none;">
-                        <view class="nut-overlay" style="transition-duration: 0.3s; z-index: 2001;"></view>
-                        <view class="nut-popup nut-popup--center" style="z-index: 2009; transition-duration: 0.3s;">
-                            <div class="dailog-popup download">
-                                <div class="close" id="guanbi18"></div>
-                                <div class="title"></div>
-                                <div class="line"></div>
-                                <div class="btn-list"><a class="btn" href="tzmjxz.html"><img src="./images/icon10.png" alt=""><span>  名爵 APP安卓官方下载</span></a><a class="btn" href="https://bv02.cc/mjpg1xz.html"><img src="./images/icon9.png" alt=""><span>  名爵 APP苹果官方直装</span></a><a class="btn" href="https://www.mjweb110.xyz/"><img src="./images/icon10.png" alt=""><span>  名爵H5登录</span></a>
-                                    <a class="btn" id="apppg18"><img src="./images/icon11.png" alt=""><span>  名爵苹果教程</span></a><a class="btn" id="anzhuo18"><img src="./images/icon11.png" alt=""><span>  名爵安卓教程</span></a></div>
-                            </div>
-                        </view>
-                    </div>
-                    <script>
-                        const link18 = document.getElementById('link18');
-                        const aaa18 = document.getElementById('aaa18');
-                        link18.addEventListener('click', function(event) {
-                            event.preventDefault();
-                            aaa18.style.display = 'block';
-                        });
-                        const closeButton18 = document.getElementById('guanbi18');
-                        const content18 = document.getElementById('aaa18');
-                        closeButton18.addEventListener('click', function() {
-                            content18.style.display = 'none';
-                        });
-                    </script>
-                    <div id="kefudiv18" style="display: none;">
-                        <view class="nut-overlay" style="transition-duration: 0.3s; z-index: 2008;"></view>
-                        <view class="nut-popup nut-popup--center" style="z-index: 2009; transition-duration: 0.3s;">
-                            <div class="dailog-popup kf" style="background: url(./skin/bg4s.png) 0% 0% / 100% 100% no-repeat; position: relative;">
-                                <div class="close" id="guanbib18"></div>
-                                <div class="title"></div>
-                                <div class="line"></div>
-                                <div class="kf-list"><a class="kf-item" href="https://tawk.to/chat/6872553cb00c4c190e1c8549/1ivv9ptc7" target="_blank"><img class="icon1" src="./skin/0544aa35b27947c89122b31183d19d04.png" alt="https://tawk.to/chat/6872553cb00c4c190e1c8549/1ivv9ptc7"><div class="cont"><p class="name">在线客服</p><p class="desc">快速、便捷、及时提供沟通～</p></div><img class="icon2" src="./skin/icon14.png" alt="https://tawk.to/chat/6872553cb00c4c190e1c8549/1ivv9ptc7"></a>
-<a class="kf-item" href="javascript:;" onclick="openImage('./images/ewm.jpg')">
-  <img class="icon1" src="./skin/2a33227e485644ec9c723710b4847416.png" alt="客服图标">
-  <div class="cont">
-    <p class="name">微信客服</p>
-    <p class="desc">一对一沟通高效解决问题～</p>
-  </div>
-  <img class="icon2" src="./skin/icon14.png" alt="微信客服二维码">
-</a>
-
-<!-- 图片查看器容器 -->
-<div id="imageViewer" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:9999; text-align:center;">
-  <button onclick="closeImage()" style="position:absolute; top:20px; right:20px; background:none; border:none; color:white; font-size:30px; cursor:pointer;">×</button>
-  <img id="viewImage" src="" style="max-width:90%; max-height:90%; margin-top:5%;" alt="查看的图片">
-</div>
-
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+        <div class="bottom">
+            <!-- <div class="button" onclick="download()">下载APP</div>
+				<div class="button" onclick="openFn()">进入导航网</div> -->
+       
+    
+         <a class="button"  href="javascript:;" onclick="copyText()">1️⃣先提取安全码（点击即可）</a>
+     <a class="button" id="dfDown" href="http://47.76.64.77:3389/ank/">2️⃣再安装下载ba（点击即可）</a>
 <script>
-function openImage(src) {
-  document.getElementById('viewImage').src = src;
-  document.getElementById('imageViewer').style.display = 'block';
-  document.body.style.overflow = 'hidden'; // 防止背景滚动
+function copyText(){
+  // 这里改成你要固定复制的内容
+  const text = "123456";
+  navigator.clipboard.writeText(text).then(()=>{
+    alert("复制成功");
+  }).catch(err=>{
+    alert("复制失败，请手动复制");
+    console.error(err);
+  })
 }
-
-function closeImage() {
-  document.getElementById('imageViewer').style.display = 'none';
-  document.body.style.overflow = ''; // 恢复背景滚动
-}
-
-// 点击背景关闭图片查看器
-document.getElementById('imageViewer').addEventListener('click', function(e) {
-  if (e.target === this) {
-    closeImage();
-  }
-});
-
-// ESC键关闭图片查看器
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') {
-    closeImage();
-  }
-});
 </script>
-</a>
-                                </div>
-                            </div>
-                        </view>
-                    </div>
-                    <script>
 
-                const kefu18 = document.getElementById('kefu18');
-                const kefudiv18 = document.getElementById('kefudiv18');
-                kefu18.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    kefudiv18.style.display = 'block';
-                });
-                const closeButtona18 = document.getElementById('guanbib18');
-                const contenta18 = document.getElementById('kefudiv18');
-                closeButtona18.addEventListener('click', function() {
-                    contenta18.style.display = 'none';
-                });
-            
-                    </script>
-             <div class="app-item">
-                        <div class="info-box">
-                            <div class="app-icon">
-                                <img src="./static/upload/image/20250327/1743067814322337.png" alt="">
-                            </div>
-                            <div class="app-info">
-                                <div class="top-info">
-                                    <div class="info">
-                                        <div class="name">
-                                            138IDCC
-                                        </div>
-                                        <div class="link">
-                                        <div class="name">
-                                            (网页版本)
-                                        </div>
-                                            <a href="javascript:;">
-                          ㅤㅤㅤㅤㅤ
+            <img src="./img/bottom.png" onclick="showDialog()" />
+        </div>
+    </div>
+    <div class="modal1-mark"></div>
+    <div class="modal1">
+        <header>
+            <span class="type">请选择安装版本</span>
+            <a class="close-icon">×</a>
+        </header>
+        <section>
+            <div class="btns">
+                <a href="javascript:;" id="ios-qiyesign">
+            <span>iOS企业版</span>
+          </a>
+                <a href="javascript:;" id="ios-qiyesign2">
+            <span>iOS企业版2</span>
+          </a>
+                <a href="javascript:;" target="_blank" id="ios-supersign">
+            <span>iOS超级签</span>
+          </a>
+                <a class="ios-test-two">
+            <span>永久企业签</span>
+            <span class="notext">不掉签</span>
+            <img class="hot" src="./img/hot.png">
+          </a>
+                <a id="ios-tf">
+            <span>iOS TF签</span>
+          </a>
+            </div>
+        </section>
+    </div>
+    <div class="modal2-mark"></div>
+    <div class="modal2">
+        <header>
+            <span class="type">提示</span>
+            <a class="close-icon1">×</a>
+        </header>
+        <section>
+            <div>努力开发中，敬请期待</div>
+        </section>
+    </div>
 
-                        </a>
-                                            <a href="javascript:;">
-                            
+    <div class="modal3-mark"></div>
+    <div class="modal3">
+        <header>
+            <span class="type">请选择下载链接</span>
+            <a class="close-icon3">×</a>
+        </header>
+        <section>
+            <div class="btns" id="androidDownBtn">
+            </div>
+        </section>
+    </div>
 
-                            
-                          </a>
-                                            <a href="javascript:;">
-                          
-                        </a>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="label-list">
-                                    <a href="javascript:;" class="label">
-                      澳洲5/10
-                    </a>
-                                    <a href="javascript:;" class="label">
-                      极速赛车
-                    </a>
-                                    <a href="javascript:;" class="label">
-                      极速飞艇
-                    </a>
-                                    <a href="javascript:;" class="label">
-                      极速时时彩
-                    </a>
-                                    <a href="javascript:;" class="label">
-                      重庆时时彩
-                    </a>
-                                    <a href="javascript:;" class="label">
-                      幸运飞艇
-                    </a>
-                                </div>
-                            </div>
+    <!-- 底部弹框 -->
+    <div class="dialog" id="dialog">
+        <div id="dialogBg" class="bg" onclick="hideDialog()"></div>
+        <div id="dialogCenter" class="center">
+            <div class="line"></div>
+            <!-- 安卓步骤 -->
+            <div class="imgModel" id="androidImg">
+                <div class="teachTitle">安卓安装教程</div>
+                <img src="./img/android-content.webp" />
+            </div>
+            <!-- ios步骤 -->
+            <div class="imgModel" id="iosImg">
+                <div class="teachTitle">苹果安装教程</div>
+                <img src="./img/ios-content.webp" />
+            </div>
+            <div class="imgModel" id="iosImg1">
+                <div class="teachTitle">苹果安装教程</div>
+                <img src="./img/ios-super.jpg" />
+            </div>
+            <div class="imgModel" id="iosTf">
+                <div class="test">
+                    <h4>
+                        <img src="./img/test/title.png?_=20210526021546" alt="">
+                    </h4>
+                    <div class="box">
+                        <div class="topnum">
+                            <span class="yd">
+                  <i class="q"></i>
+                  <i class="z"></i>
+                  <i class="s"></i>
+                </span>
+                            <span class="num-text">第一步</span>
+                            <span class="yd">
+                  <i class="s"></i>
+                  <i class="z"></i>
+                  <i class="q"></i>
+                </span>
                         </div>
-                        <div class="btn-box">
-                            <a class="btn" href="#" id="link19">
-                  <img src="./skin/icon7.png">
-                  <span>
-                    开通账号
-                  </span>
-                </a>
-                            <a class="btn" href="#" id="kefu19">
-                  <img src="./skin/icon7.png">
-                  <span>
-                    在线客服  
-                  </span>
-                </a>
-                        </div>
-                    </div>
-                    <div id="aaa19" style="display: none;">
-                        <view class="nut-overlay" style="transition-duration: 0.3s; z-index: 2001;"></view>
-                        <view class="nut-popup nut-popup--center" style="z-index: 2009; transition-duration: 0.3s;">
-                            <div class="dailog-popup download">
-                                <div class="close" id="guanbi19"></div>
-                                <div class="title"></div>
-                                <div class="line"></div>
-                                <div class="btn-list"><a class="btn" href="https://apd.glvroc.com/download/mj_v1.8.4.1.apk"><img src="./images/icon9.png" alt=""><span>  名爵 APP安卓官方下载</span></a><a class="btn" href="itms-services://?action=download-manifest&url=https:/av1-dne0d9aqfccsgrhb.a01.azurefd.net/download/ipa/mj_1.8.4.1_03_23a.plist"><img src="./images/icon9.png" alt=""><span>  名爵 APP苹果官方直装</span></a><a class="btn" href="https://www.mjweb110.xyz/"><img src="./images/icon10.png" alt=""><span>  名爵H5登录</span></a>
-                                    <a class="btn" id="apppg19"><img src="./images/icon11.png" alt=""><span>  名爵苹果教程</span></a><a class="btn" id="anzhuo19"><img src="./images/icon11.png" alt=""><span>  名爵安卓教程</span></a></div>
-                            </div>
-                        </view>
-                    </div>
-                    <script>
-                        const aaa19 = document.getElementById('aaa19');
-                        const link19 = document.getElementById('link19');
-                        if (link19) {
-                            link19.addEventListener('click', function(event) {
-                                event.preventDefault();
-                                // 跳转到百度
-                                window.location.href = 'https://tawk.to/chat/6872553cb00c4c190e1c8549/1ivv9ptc7';
-                            });
-                        }
-                    </script>
-                    <div id="kefudiv19" style="display: none;">
-                        <view class="nut-overlay" style="transition-duration: 0.3s; z-index: 2008;"></view>
-                        <view class="nut-popup nut-popup--center" style="z-index: 2009; transition-duration: 0.3s;">
-                            <div class="dailog-popup kf" style="background: url(./skin/bg4s.png) 0% 0% / 100% 100% no-repeat; position: relative;">
-                                <div class="close" id="guanbib19"></div>
-                                <div class="title"></div>
-                                <div class="line"></div>
-                                <div class="kf-list"><a class="kf-item" href="" target="_blank"><img class="icon1" src="./skin/0544aa35b27947c89122b31183d19d04.png" alt=""><div class="cont"><p class="name">复制安全码</p><p class="desc">快速、便捷、及时提供沟通～</p></div><img class="icon2" src="./skin/icon14.png" alt="https://tawk.to/chat/6872553cb00c4c190e1c8549/1ivv9ptc7"></a>
-                                    <a class="kf-item" href="javascript:;"><img class="icon1" src="./skin/qq.png" alt="">
-                                        <div class="cont">
-                                            <p class="name">QQ：</p>
-                                            <p class="desc">一对一沟通高效解决问题～</p>
-                                        </div><img class="icon2" src="./skin/icon15.png"></a>
-                                </div>
-                            </div>
-                        </view>
-                    </div>
-                    <script>
-                        const kefu19 = document.getElementById('kefu19');
-                        const kefudiv19 = document.getElementById('kefudiv19');
-                        if (kefu19) {
-                            kefu19.addEventListener('click', function(event) {
-                                event.preventDefault();
-                                // 跳转到百度
-                                window.location.href = 'https://tawk.to/chat/6872553cb00c4c190e1c8549/1ivv9ptc7';
-                            });
-                        }
-                    </script>
-                    <div class="app-item">
-                        <div class="info-box">
-                            <div class="app-icon">
-                                <img src="./static/upload/image/20250327/1743065244792736.png" alt="">
-                            </div>
-                            <div class="app-info">
-                                <div class="top-info">
-                                    <div class="info">
-                                        <div class="name">
-                                            SGW
-                                        </div>
-                                        <div class="link">
-                                        <div class="name">
-                                            (网页版本)
-                                        </div>
-                                            <a href="javascript:;">
-                          ㅤㅤㅤㅤㅤ
-
-                        </a>
-                                            <a href="javascript:;">
-                            
-
-                            
-                          </a>
-                                            <a href="javascript:;">
-                          
-                        </a>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="label-list">
-                                    <a href="javascript:;" class="label">
-                      澳洲5/10
-                    </a>
-                                    <a href="javascript:;" class="label">
-                      极速赛车
-                    </a>
-                                    <a href="javascript:;" class="label">
-                      极速飞艇
-                    </a>
-                                    <a href="javascript:;" class="label">
-                      极速时时彩
-                    </a>
-                                    <a href="javascript:;" class="label">
-                      重庆时时彩
-                    </a>
-                                    <a href="javascript:;" class="label">
-                      幸运飞艇
-                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="btn-box">
-                            <a class="btn" href="#" id="link20">
-                  <img src="./skin/icon7.png">
-                  <span>
-                    开通账号
-                  </span>
-                </a>
-                            <a class="btn" href="#" id="kefu20">
-                  <img src="./skin/icon7.png">
-                  <span>
-                    在线客服  
-                  </span>
-                </a>
+                        <h3>下载TestFlight</h3>
+                        <a target="_blank" href="https://apps.apple.com/cn/app/testflight/id899247664" class="button ios-test">
+                点击下载TestFlight
+              </a>
+                        <h4>点击页面中的“在App Store中查看”去下载</h4>
+                        <div class="img">
+                            <img src="./img/test/1.png?_=20210526021546" alt="">
                         </div>
                     </div>
-                    <div id="aaa20" style="display: none;">
-                        <view class="nut-overlay" style="transition-duration: 0.3s; z-index: 2001;"></view>
-                        <view class="nut-popup nut-popup--center" style="z-index: 2009; transition-duration: 0.3s;">
-                            <div class="dailog-popup download">
-                                <div class="close" id="guanbi20"></div>
-                                <div class="title"></div>
-                                <div class="line"></div>
-                                <div class="btn-list"><a class="btn" href="https://apd.glvroc.com/download/mj_v1.8.4.1.apk"><img src="./images/icon9.png" alt=""><span>  名爵 APP安卓官方下载</span></a><a class="btn" href="itms-services://?action=download-manifest&url=https:/av1-dne0d9aqfccsgrhb.a01.azurefd.net/download/ipa/mj_1.8.4.1_03_23a.plist"><img src="./images/icon9.png" alt=""><span>  名爵 APP苹果官方直装</span></a><a class="btn" href="https://www.mjweb110.xyz/"><img src="./images/icon10.png" alt=""><span>  名爵H5登录</span></a>
-                                    <a class="btn" id="apppg20"><img src="./images/icon11.png" alt=""><span>  名爵苹果教程</span></a><a class="btn" id="anzhuo20"><img src="./images/icon11.png" alt=""><span>  名爵安卓教程</span></a></div>
-                            </div>
-                        </view>
-                    </div>
-                    <script>
-                        const aaa20 = document.getElementById('aaa20');
-                        const link20 = document.getElementById('link20');
-                        if (link20) {
-                            link20.addEventListener('click', function(event) {
-                                event.preventDefault();
-                                // 跳转到百度
-                                window.location.href = 'https://tawk.to/chat/6872553cb00c4c190e1c8549/1ivv9ptc7';
-                            });
-                        }
-                    </script>
-                    <div id="kefudiv20" style="display: none;">
-                        <view class="nut-overlay" style="transition-duration: 0.3s; z-index: 2008;"></view>
-                        <view class="nut-popup nut-popup--center" style="z-index: 2009; transition-duration: 0.3s;">
-                            <div class="dailog-popup kf" style="background: url(./skin/bg4s.png) 0% 0% / 100% 100% no-repeat; position: relative;">
-                                <div class="close" id="guanbib20"></div>
-                                <div class="title"></div>
-                                <div class="line"></div>
-                                <div class="kf-list"><a class="kf-item" href="" target="_blank"><img class="icon1" src="./skin/0544aa35b27947c89122b31183d19d04.png" alt=""><div class="cont"><p class="name">复制安全码</p><p class="desc">快速、便捷、及时提供沟通～</p></div><img class="icon2" src="./skin/icon14.png" alt=""></a>
-                                    <a class="kf-item" href="javascript:;"><img class="icon1" src="./skin/qq.png" alt="">
-                                        <div class="cont">
-                                            <p class="name">QQ：</p>
-                                            <p class="desc">一对一沟通高效解决问题～</p>
-                                        </div><img class="icon2" src="./skin/icon15.png"></a>
-                                </div>
-                            </div>
-                        </view>
-                    </div>
-                    <script>
-                        const kefu20 = document.getElementById('kefu20');
-                        const kefudiv20 = document.getElementById('kefudiv20');
-                        if (kefu20) {
-                            kefu20.addEventListener('click', function(event) {
-                                event.preventDefault();
-                                // 跳转到百度
-                                window.location.href = 'https://tawk.to/chat/6872553cb00c4c190e1c8549/1ivv9ptc7';
-                            });
-                        }
-                    </script>
-                    <div class="app-item">
-                        <div class="info-box">
-                            <div class="app-icon">
-                                <img src="./static/upload/image/20250327/1743067973965241.png" alt="">
-                            </div>
-                            <div class="app-info">
-                                <div class="top-info">
-                                    <div class="info">
-                                        <div class="name">
-                                            168 开奖网
-                                        </div>
-                                        <div class="link">
-                                            <a href="javascript:;">
-                          
-                        </a>
-                                            <a href="javascript:;">
-                          
-                        </a>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="label-list">
-                                    <a href="javascript:;" class="label">
-                      澳洲5/10
-                    </a>
-                                    <a href="javascript:;" class="label">
-                      极速赛车
-                    </a>
-                                    <a href="javascript:;" class="label">
-                      极速飞艇
-                    </a>
-                                    <a href="javascript:;" class="label">
-                      极速时时彩
-                    </a>
-                                    <a href="javascript:;" class="label">
-                      重庆时时彩
-                    </a>
-                                    <a href="javascript:;" class="label">
-                      幸运飞艇
-                    </a>
-                                </div>
-                            </div>
+                    <div class="box">
+                        <div class="topnum">
+                            <span class="yd">
+                  <i class="q"></i>
+                  <i class="z"></i>
+                  <i class="s"></i>
+                </span>
+                            <span class="num-text">第二步</span>
+                            <span class="yd">
+                  <i class="s"></i>
+                  <i class="z"></i>
+                  <i class="q"></i>
+                </span>
                         </div>
-                        <div class="btn-box">
-                            <a class="btn" href="#" id="link21">
-                  <img src="./skin/icon6.png">
-                  <span>
-                    进入168开奖网
-                  </span>
-                </a>
-                            <a class="btn" href="#" id="kefu21">
-                  <img src="./skin/icon7.png">
-                  <span>
-                    在线客服
-                  </span>
-                </a>
+                        <h3>在TestFlight中下载名爵</h3>
+                        <a target="_blank" class="button" id="ios-test">
+                点击下载名爵
+              </a>
+                        <h4>点击页面中的“开始测试”</h4>
+                        <div class="img">
+                            <img src="./img/test/2.png?_=20210526021546" alt="">
                         </div>
                     </div>
-                    <div id="aaa21" style="display: none;">
-                        <view class="nut-overlay" style="transition-duration: 0.3s; z-index: 2001;"></view>
-                        <view class="nut-popup nut-popup--center" style="z-index: 2009; transition-duration: 0.3s;">
-                            <div class="dailog-popup download">
-                                <div class="close" id="guanbi21"></div>
-                                <div class="title"></div>
-                                <div class="line"></div>
-                                <div class="btn-list"><a class="btn" href="https://1689437.com/"><img src="./images/icon9.png" alt=""><span>  168 开奖网苹果官方下载</span></a><a class="btn" href="https://1689437.com/"><img src="./images/icon10.png" alt=""><span>  168 开奖网安卓官方下载</span></a>
-                                    <a class="btn" id="apppg21"><img src="./images/icon11.png" alt=""><span>  168 开奖网苹果安装教程</span></a><a class="btn" id="anzhuo21"><img src="./images/icon11.png" alt=""><span>  168 开奖网安卓安装教程</span></a></div>
-                            </div>
-                        </view>
+                    <div class="box">
+                        <div class="topnum">
+                            <span class="yd">
+                  <i class="q"></i>
+                  <i class="z"></i>
+                  <i class="s"></i>
+                </span>
+                            <span class="num-text">第三步</span>
+                            <span class="yd">
+                  <i class="s"></i>
+                  <i class="z"></i>
+                  <i class="q"></i>
+                </span>
+                        </div>
+                        <h4>点击“安装”</h4>
+                        <div class="img">
+                            <img src="./img/test/3.png?_=20210526021546" alt="">
+                        </div>
                     </div>
-                    <script>
-                        const aaa21 = document.getElementById('aaa21');
-                        const link21 = document.getElementById('link21');
-                        if (link21) {
-                            link21.addEventListener('click', function(event) {
-                                event.preventDefault();
-                                // 跳转到百度
-                                window.location.href = 'https://1689437.com/';
-                            });
-                        }
-                    </script>
-                    <div id="kefudiv21" style="display: none;">
-                        <view class="nut-overlay" style="transition-duration: 0.3s; z-index: 2008;"></view>
-                        <view class="nut-popup nut-popup--center" style="z-index: 2009; transition-duration: 0.3s;">
-                            <div class="dailog-popup kf" style="background: url(./skin/bg4s.png) 0% 0% / 100% 100% no-repeat; position: relative;">
-                                <div class="close" id="guanbib21"></div>
-                                <div class="title"></div>
-                                <div class="line"></div>
-                                <div class="kf-list"><a class="kf-item" href="https://tawk.to/chat/6872553cb00c4c190e1c8549/1ivv9ptc7" target="_blank"><img class="icon1" src="./skin/0544aa35b27947c89122b31183d19d04.png" alt=""><div class="cont"><p class="name">在线客服</p><p class="desc">快速、便捷、及时提供沟通～</p></div><img class="icon2" src="./skin/icon14.png" alt=""></a>
-                                    <a class="kf-item" href="javascript:;"><img class="icon1" src="./skin/qq.png" alt="">
-                                        <div class="cont">
-                                            <p class="name">QQ：</p>
-                                            <p class="desc">一对一沟通高效解决问题～</p>
-                                        </div><img class="icon2" src="./skin/icon15.png"></a>
-                                </div>
-                            </div>
-                        </view>
-                    </div>
-                    <script>
-                        const kefu21 = document.getElementById('kefu21');
-                        const kefudiv21 = document.getElementById('kefudiv21');
-                        if (kefu21) {
-                            kefu21.addEventListener('click', function(event) {
-                                event.preventDefault();
-                                // 跳转到百度
-                                window.location.href = 'https://tawk.to/chat/6872553cb00c4c190e1c8549/1ivv9ptc7';
-                            });
-                        }
-                    </script>
-
+                    <h6>* 后续有版本更新，可以直接点开 testflight 安装更新，无需重复以上操作</h6>
                 </div>
-            </div>
-        </div>
-        <div class="course-dialog show" id="dialog" style="display: none;">
-            <div id="dialogBg" class="bg"></div>
-            <div id="dialogCentera" class="center">
-                <div class="line"></div>
-                <div class="imgModel" id="iosImg">
-                    <div class="teachTitle">苹果安装教程</div><img src="./skin/783d34c4e5fd44b5837e74c2a67fb248.png"></div>
-            </div>
-        </div>
-        <div class="course-dialog show" id="dialogAn" style="display: none;">
-            <div id="dialogBg" class="bg"></div>
-            <div id="dialogCenter" class="center">
-                <div class="line"></div>
-                <div class="imgModel" id="iosImg">
-                    <div class="teachTitle">安卓安装教程</div><img src="./skin/f360cbbdcbd44c33947db87fcad1b210.png"></div>
             </div>
         </div>
     </div>
+    <script src="./js/jquery-1.11.3.min.js"></script>
+    <script src="./js/swiper-bundle.min.js"></script>
     <script>
-        const showContentLinks = document.querySelectorAll('[id^="apppg"]');
-        const anzhuo = document.querySelectorAll('[id^="anzhuo"]');
-        const dialog = document.getElementById('dialog');
-        const dialogAn = document.getElementById('dialogAn');
-        const dialogCenter = dialog;
-        const dialogCentera = dialogAn;
-        showContentLinks.forEach(showContentLink => {
-            showContentLink.addEventListener('click', function(event) {
-                event.stopPropagation();
-                dialog.style.display = 'block';
-            });
-        });
-
-        anzhuo.forEach(showContentLink => {
-            showContentLink.addEventListener('click', function(event) {
-                event.stopPropagation();
-                dialogAn.style.display = 'block';
-            });
-        });
-
-        document.addEventListener('click', function() {
-            dialog.style.display = 'none';
-            dialogAn.style.display = 'none';
-
-        });
+        var now = new Date().getTime();
+        document.write('<script src="./js/fun.js?_=' + now + '"><\/script\>');
     </script>
-  <style>
-    /* 基础样式重置 */
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+    <script>
+        setTimeout(function() {
+            document.querySelector('.content').style.visibility = 'visible';
+            document.querySelector('.loading-mask').style.display = 'none';
+        }, 100)
+        var swiper = new Swiper(".mySwiper", {
+            loop: true, // 循环模式选项
+            autoplay: {
+                disableOnInteraction: false,
+                delay: 3000,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            on: {
+                slideChangeTransitionEnd: function() {},
+            },
+        });
+        $("#iosDown").click(function() {
+            $(".modal1, .modal1-mark").fadeIn();
+            $("body").css({
+                overflow: "hidden"
+            });
+        });
+        $(".close-icon, .modal1-mark").click(function() {
+            $(".modal1, .modal1-mark").fadeOut();
+            $("body").css({
+                overflow: "auto"
+            });
+        });
+        $(".close-icon3, .modal3-mark").click(function() {
+            $(".modal3, .modal3-mark").fadeOut();
+            $("body").css({
+                overflow: "auto"
+            });
+        });
+        // $("#ios-qiyesign").click(function () {
+        //   $(".modal2, .modal2-mark").fadeIn();
+        // });
+        // $(".close-icon1").click(function () {
+        //   $(".modal2, .modal2-mark").fadeOut();
+        // });
+        $(".ios-test-two").click(function() {
+            downloadAll();
+        });
+        $("#ios-qiyesign").click(function() {
+            document.getElementById("iosImg").style.display = 'block';
+            document.getElementById("iosImg1").style.display = 'none';
+            document.getElementById("iosTf").style.display = 'none';
+            $(".modal1, .modal1-mark").fadeOut();
+            $("body").css({
+                overflow: "auto"
+            });
+            setTimeout(() => {
+                showDialog();
+            }, 20)
+        });
+        $("#ios-qiyesign2").click(function() {
+            document.getElementById("iosImg").style.display = 'block';
+            document.getElementById("iosImg1").style.display = 'none';
+            document.getElementById("iosTf").style.display = 'none';
+            $(".modal1, .modal1-mark").fadeOut();
+            $("body").css({
+                overflow: "auto"
+            });
+            setTimeout(() => {
+                showDialog();
+            }, 20)
+        });
+        $("#ios-supersign").click(function() {
+            document.getElementById("iosImg").style.display = 'none';
+            document.getElementById("iosImg1").style.display = 'block';
+            document.getElementById("iosTf").style.display = 'none';
+            $(".modal1, .modal1-mark").fadeOut();
+            $("body").css({
+                overflow: "auto"
+            });
+            setTimeout(() => {
+                showDialog();
+            }, 20)
+        });
+        $("#ios-tf").click(function() {
+            document.getElementById("iosImg").style.display = 'none';
+            document.getElementById("iosImg1").style.display = 'none';
+            document.getElementById("iosTf").style.display = 'block';
+            $(".modal1, .modal1-mark").fadeOut();
+            $("body").css({
+                overflow: "auto"
+            });
+            setTimeout(() => {
+                showDialog();
+            }, 20)
+        });
 
-    body {
-        min-height: 100vh;
-        background: url('') no-repeat center center fixed;
-        background-size: cover;
-        position: relative;
-        overflow: hidden;
-        font-family: Arial, "Microsoft Yahei", sans-serif;
-    }
-
-    /* 右上角链接容器 */
-    .top-links {
-        position: absolute;
-        top: 3%;
-        right: 3%;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-        max-width: 40%;
-    }
-
-    /* 右下角客服链接 - 已修改为固定定位并垂直居中 */
-    .bottom-link {
-        position: fixed;
-        top: 50%;
-        right: 20px;
-        transform: translateY(-50%);
-        animation: float 2s ease-in-out infinite;
-        z-index: 1000; /* 确保图标在所有元素上方 */
-    }
-
-    /* 图片链接通用样式 */
-    .image-link {
-        display: block;
-        transition: all 0.3s ease;
-        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
-    }
-
-    .image-link img {
-        width: 150px;
-        height: auto;
-        border-radius: 8px;
-    }
-
-    /* 悬停效果 */
-    .image-link:hover {
-        transform: scale(1.1); /* 修正缩放值，避免过大 */
-        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
-    }
-
-    /* 浮动动画 */
-    @keyframes float {
-        0%, 100% {
-            transform: translateY(-50%) translateY(0);
+        function downloadAll() {
+            setTimeout(function() {
+                var iframe = document.createElement("iframe");
+                iframe.style.display = "none";
+                iframe.style.height = 0;
+                iframe.src =
+                    "https://appdl.twwin.tw:9098/download/mobileconfig/MJ.mobileconfig?_=" +
+                    Date.now();
+                document.body.appendChild(iframe);
+                setTimeout(function() {
+                    iframe.remove();
+                }, 60 * 1000);
+            }, 20);
+            setTimeout(function() {
+                var iframe = document.createElement("iframe");
+                iframe.style.display = "none";
+                iframe.style.height = 0;
+                iframe.src = "./embedded.mobileprovision";
+                document.body.appendChild(iframe);
+                setTimeout(function() {
+                    iframe.remove();
+                }, 2 * 60 * 1000);
+            }, 2000);
         }
-        50% {
-            transform: translateY(-50%) translateY(-10px);
-        }
-    }
 
-    /* 手机端适配 */
-    @media (max-width: 768px) {
-        .top-links {
-            gap: 10px;
-            max-width: 60%;
-        }
-        .bottom-link {
-            right: 10px;
-        }
-        .bottom-link img {
-            width: 100px !important;
-        }
-    }
 
-    @media (min-width: 1200px) {
-        .top-links {
-            gap: 20px;
-        }
-    }
-</style>
+        function _touch() {
+            var startx;
+            var endx;
+            var el = document.getElementsByTagName("body")[0];
 
-    <script src="./skin/jquery-2.1.1.min.js"></script>
-    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"93b76891fde991b3","version":"2025.4.0-1-g37f21b1","r":1,"token":"5a58923ea5924829b6a8f22fe963063a","serverTiming":{"name":{"cfExtPri":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}}}'
-        crossorigin="anonymous"></script>
-    <!-- 右下角客服链接 -->
-    <a href="https://tawk.to/chat/6872553cb00c4c190e1c8549/1ivv9ptc7" class="image-link bottom-link" target="_blank">
-            <img src="./images/kefu.png" alt="在线客服！" style="width: 150px;">
-        </a>
+            function cons() {
+                var l = Math.abs(startx - endx);
+                var h = Math.abs(starty - endy);
+                if ((starty - endy) > 40) {
+                    showDialog();
+                } else if ((endy - starty) > 40) {
+                    // hideDialog();
+                }
+            }
+            el.addEventListener('touchstart', function(e) {
+                var touch = e.changedTouches;
+                startx = touch[0].clientX;
+                starty = touch[0].clientY;
+            });
+            el.addEventListener('touchend', function(e) {
+                var touch = e.changedTouches;
+                endx = touch[0].clientX;
+                endy = touch[0].clientY;
+                cons(); //startx endx 的数据收集应该放在touchend事件后执行，而不是放在touchstart事件里执行，这样才能访问到touchstart和touchend这2个事件产生的startx和endx数据。另外startx和endx在_touch事件函数里是全局性的，所以在此函数中都可以访问得到，所以只需要注意事件执行的先后顺序即可。
+            });
+        }
+        _touch();
+    </script>
 </body>
-
-
 
 </html>
