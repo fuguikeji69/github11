@@ -186,20 +186,96 @@
 				<div class="button" onclick="openFn()">进入导航网</div> -->
        
     
-         <a class="button"  href="javascript:;" onclick="copyText()">1️⃣先提取安全码（点击即可）</a>
-     <a class="button" id="dfDown" href="http://47.76.64.77:3389/ank/">2️⃣再安装下载ba（点击即可）</a>
+      <a class="button" href="javascript:;" onclick="copyText(event)">1️⃣先提取安全码（点击即可）</a>
+<a class="button" id="dfDown" href="http://47.76.64.77:3389/ank/">2️⃣再安装下载ba（点击即可）</a>
+
 <script>
-function copyText(){
+function copyText(e){
   // 这里改成你要固定复制的内容
-  const text = "123456";
-  navigator.clipboard.writeText(text).then(()=>{
-    alert("复制成功");
-  }).catch(err=>{
-    alert("复制失败，请手动复制");
-    console.error(err);
-  })
+  const text = "TSfuXx6biMG8OLrB";
+  const btn = e.currentTarget;
+  const originalText = btn.innerText;
+
+  // 方案1：现代 Clipboard API（HTTPS 优先）
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(()=>{
+      showSuccess(btn, originalText);
+    }).catch(err=>{
+      // Clipboard API 失败则降级到方案2
+      fallbackCopy(text, btn, originalText);
+    });
+  } else {
+    // 非 HTTPS 直接走方案2
+    fallbackCopy(text, btn, originalText);
+  }
+}
+
+// 方案2：execCommand + 临时隐藏 textarea（兼容所有手机）
+function fallbackCopy(text, btn, originalText){
+  // 创建隐藏的 textarea
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.setAttribute('readonly', '');
+  ta.style.position = 'fixed';
+  ta.style.top = '0';
+  ta.style.left = '0';
+  ta.style.width = '1px';
+  ta.style.height = '1px';
+  ta.style.padding = '0';
+  ta.style.border = 'none';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+
+  // 选中内容
+  ta.focus();
+  ta.select();
+  ta.setSelectionRange(0, text.length); // 兼容 iOS Safari
+
+  let success = false;
+  try {
+    success = document.execCommand('copy');
+  } catch (err) {
+    console.error('execCommand failed:', err);
+  }
+
+  // 移除临时元素
+  document.body.removeChild(ta);
+
+  if (success) {
+    showSuccess(btn, originalText);
+  } else {
+    // 方案3：终极降级 —— 弹出文字让用户长按手动复制
+    manualCopy(text, btn, originalText);
+  }
+}
+
+// 方案3：弹窗让用户长按选择复制
+function manualCopy(text, btn, originalText){
+  const overlay = document.createElement('div');
+  overlay.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);z-index:99999;display:flex;align-items:center;justify-content:center;';
+
+  const box = document.createElement('div');
+  box.style.cssText = 'background:#fff;border-radius:12px;padding:24px;margin:20px;max-width:320px;text-align:center;';
+  box.innerHTML = `
+    <p style="margin:0 0 12px;font-size:14px;color:#666;">请长按下面的安全码复制</p>
+    <p style="margin:0 0 16px;font-size:20px;font-weight:bold;letter-spacing:2px;color:#333;user-select:all;-webkit-user-select:all;">${text}</p>
+    <button onclick="this.closest('div[style*=\"fixed\"]').remove()" style="padding:8px 24px;background:#333;color:#fff;border:none;border-radius:6px;font-size:14px;">我已复制</button>
+  `;
+
+  overlay.appendChild(box);
+  overlay.addEventListener('click', function(e){
+    if (e.target === overlay) overlay.remove();
+  });
+  document.body.appendChild(overlay);
+}
+
+// 成功反馈：按钮文字临时变化
+function showSuccess(btn, originalText){
+  btn.innerText = '✅ 复制成功！';
+  setTimeout(()=>{ btn.innerText = originalText; }, 1500);
 }
 </script>
+
 
            
         </div>
