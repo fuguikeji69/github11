@@ -84,11 +84,11 @@ body {
     width: calc(100% - 60px);
     height: 52px;
     /* 蘑菇风：白到红的渐变底（无斑点） */
-    background-color: #e0141c;
+    background-color: #009dff;
     background-image:
         /* 顶部偏白的柔和高光，向下过渡到红色 */
         radial-gradient(130% 170% at 50% -35%, rgba(255, 255, 255, 0.72) 0%, rgba(255, 255, 255, 0.26) 34%, rgba(255, 255, 255, 0) 64%),
-        linear-gradient(180deg, #ff7d75 0%, #ee2127 48%, #b10c11 100%);
+        linear-gradient(180deg, #75fffd 0%, #2165ee 48%, #220cb1 100%);
     border-radius: 11px;
     color: #FFFFFF;
     line-height: 52px;
